@@ -1,0 +1,18 @@
+nav.navbar.navbar-expand-lg.bg-light(style='position:fixed; top: 0; width: 100%; z-index: 10000')
+    .container-fluid
+        a.navbar-brand(href='#') User
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.me-auto.mb-2.mb-lg-0
+                li.nav-item.mx-4
+                    a.nav-link.active(aria-current='page' href='/general/'+userId) General
+                li.nav-item.mx-4
+                    a.nav-link.active(aria-current='page' href='/myProduct/'+userId) My Product
+                li.nav-item.mx-4
+                    a.nav-link.active(aria-current='page' href='/add/'+userId) Add Product
+                form.d-flex(action='/search'+userId style="position: absolute; right: 120px")
+                    input.form-control.me-2(type='search' placeholder='Search' aria-label='Search' name='search')
+                    button.btn.btn-outline-success(type='submit') Search
+                li.nav-item.mx-4
+                    a.nav-link.active(aria-current='page' href='/') Log Out

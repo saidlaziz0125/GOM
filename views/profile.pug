@@ -1,0 +1,92 @@
+include head 
+link(rel="stylesheet", href="../public/css/g.css")
+body
+    if(data)
+        nav.navbar.navbar-expand-lg.bg-light
+            .container-fluid
+                a.navbar-brand(href='#') User
+                button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                #navbarSupportedContent.collapse.navbar-collapse
+                    ul.navbar-nav.me-auto.mb-2.mb-lg-0
+                        li.nav-item.mx-4
+                            a.nav-link.active(aria-current='page' href='/myPRoduct/'+data.id) My Product
+                        li.nav-item.mx-4
+                            a.nav-link.active(aria-current='page' href='/add/'+data.id) Add Product
+                        li.nav-item.mx-4
+                            a.nav-link.active(aria-current='page' href='/') Log Out
+                        //- 
+                        form.d-flex(action='/search'+data.id style="position: absolute; right: 120px")
+                            input.form-control.me-2(type='search' placeholder='Search' aria-label='Search' name='search')
+                            button.btn.btn-outline-success(type='submit') Search
+                        //- 
+                        li.nav-item.mx-4(style="position: absolute; right: 50px")
+                            button.btn(type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvasRight' aria-controls='offcanvasRight') 
+                                ion-icon(name="person-circle-outline" style="font-size: 25px")
+                        li.nav-item.mx-4(style="position: absolute; right: 0")
+                            button.btn(type="button" data-bs-toggle='modal' data-bs-target='#staticBackdrop').saved-btn
+                                ion-icon(name="bookmark-outline" style="font-size: 25px")
+        .saved-box
+
+        .body
+            
+            #offcanvasRight.offcanvas.offcanvas-end(tabindex='-1' aria-labelledby='offcanvasRightLabel')
+                .offcanvas-header
+                    h5#offcanvasRightLabel.offcanvas-title  Profile
+                    button.btn-close(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                .offcanvas-body
+                    .card(style='width: 100%;')
+                        img.card-img-top(src='./img/download.png' style="height: 250px; width: 250px; display:block; margin:auto")
+                        ul.list-group.list-group-flush
+                            li.text-warning.list-group-item= data.username
+                            li.text-warning.list-group-item= data.lastname
+                            li.text-warning.list-group-item= data.email
+                            li.text-warning.list-group-item= data.login
+                            li.text-warning.list-group-item
+                                button.btn.btn-success
+                                    a(href="/update") 
+        .products(style="display: flex; flex-wrap: wrap")
+            if(productData)
+                .b
+                  each db in productData
+                    .card.mx-1.mt-5
+                        .card-img
+                            a(href="/cardsIn/"+db.id) 
+                                img.card-img-top.i.p-1(src='../'+db.photo style="border-radius: 7px") 
+                        .card-body
+                            h5.card-text
+                                a(href="/cardsIn/"+db.id style="color: black")= db.product_name
+                            small.card-text(style="color: grey")= db.region+' viloyati, '+db.district+' tumani'
+                            br
+                            small.card-text="$"+db.price
+                            small.card-text(style="position:absolute; right: 10px; bottom: 5px; font-size: 22px")
+                                a(href="/saved/"+db.id+"/user/"+data.id) 
+                                    ion-icon(name="bookmark-outline")
+        //- 
+        //- Button trigger modal
+        //- Modal
+        #staticBackdrop.modal.fade(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+            .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+                .modal-content
+                    .modal-header
+                        h1#staticBackdropLabel.modal-title.fs-5 Modal title
+                        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                    .modal-body
+                        if(saved)
+                            each db in saved
+                                .div2.border.my-2(style='display:flex;justify-content:space-between')
+                                    .modal-imgg(style='width: 30%; height: 120px')
+                                        img(src="../"+db.photo, alt="" style='width: 100%; height: 100%')
+                                    .modal-textt(style='width: 70%; height: 120px')
+                                        h5= db.product_name+" " 
+                                            small.text-secondary= db.category
+                                        p= db.region+' viloyati '+db.district+' tumani'
+                                        p= '$'+db.price
+
+                    .modal-footer
+                        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+
+
+                                                                
+
+                

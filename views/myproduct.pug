@@ -1,0 +1,18 @@
+include head 
+//- link(rel="stylesheet", href="..public/css/g.css")
+body(style='background: #f2f4f5') 
+    if(userId)
+        include usernav 
+        if(myproductdata)
+            .b(style="width: 100%; display: flex; padding: 50px 90px;")
+                each db in myproductdata 
+                    .card.mx-3.mt-5(style="width: 280px; height: 280px")
+                        .card-img(style="height: 170px")
+                            a(href="/cardsIn/"+db.gadgets._id) 
+                                img.card-img-top.i.p-1(src='../'+db.gadgets.photo style="border-radius: 7px; width: 100%; height: 100%") 
+                        .card-body
+                            h5.card-text
+                                a(href="/cardsIn/"+db.gadgets._id style="color: black; text-decoration: none ")=db.gadgets.product_name
+                            small.card-text(style="color: grey")= db.gadgets.region+' viloyati, '+db.gadgets.district+' tumani'
+                            br
+                            small.card-text="$"+db.gadgets.price

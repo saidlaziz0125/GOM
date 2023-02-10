@@ -1,0 +1,17 @@
+include head 
+link(rel="stylesheet", href="../public/css/g.css")
+body 
+    include navbar 
+    if(data)
+          .b
+            each db in data
+                .card.mx-1.mt-5(style="width: 19rem")
+                        .card-img
+                            a(href="/cardsIn/"+db.id) 
+                                img.card-img-top.i.p-1(src='../'+db.photo style="border-radius: 7px") 
+                        .card-body
+                            h5.card-text
+                                a(href="/cardsIn/"+db.id+"/user/"+userId style="color: black")= db.product_name
+                            small.card-text(style="color: grey")= db.region+' viloyati, '+db.district+' tumani'
+                            br
+                            small.card-text="$"+db.price 

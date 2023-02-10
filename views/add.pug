@@ -1,0 +1,64 @@
+include head
+script(src="../public/js/profile.js") 
+body(style='background: #f2f4f5')
+    if(userId)
+        include usernav
+        if(add)
+            form(method="post"  style='width: 50%; position:relative; top: 50px' enctype="multipart/form-data").mx-auto.my-3
+
+                h1.text-center.text-info Add Product 
+                .mb-3.mx-1
+                    input.form-control.p-3.w-100(type='text' name='product_name' placeholder='Product Name' required)  
+                .mb-3.mx-1
+                    select.form-select.p-3.w-100(name='category' required)
+                        option(value='') Category
+                        option(value='notebook') Notebook
+                        option(value='computer') Computer
+                        option(value='phone') Phone
+                        option(value='clock') Clock
+                        option(value='tablet') Tablet
+                        option(value='ipod') iPods
+                        option(value='car') Cars
+                .mb-3   
+                    select.form-select.p-3.w-100(name='region' required)
+                        option(value='') Region
+                        option(value='Andijon') Andijon Viloyati
+                        option(value='Buxoro') Buxoro Viloyati
+                        option(value='Jizzax') Jizzax viloyati
+                        option(value='Qashqadaryo') Qashqadaryo viloyati
+                        option(value='Navoiy') Navoiy viloyati
+                        option(value='Namangan') Namangan viloyati
+                        option(value='Surxandaryo') Surxandaryo viloyati
+                        option(value='Sirdayo') Sirdaryo viloyati
+                        option(value='Toshkent') Toshkent shahar
+                        option(value='Toshkent') Toshkent viloyati
+                        option(value='Fargona') Farg'ona viloyati
+                        option(value='Xorazm') Xorazm viloyati
+                        option(value='Qoraqalpogiston') Qoraqalpog'iston Res
+                .mb-3
+                    input.form-control.p-3(type='text' name='district'  placeholder='District')
+                .d-flex
+                    .mb-3.mx-1.input-group
+                        span(class="input-group-text") $
+                        input.form-control.p-3(type='number' name='price' placeholder='Price' required)
+                    .mb-3.input-group
+                        input.form-control.p-3(type='number' name='discount' placeholder='Discount' required)
+                        span(class="input-group-text") %
+                .d-flex  
+                    .mb-3.mx-1
+                        select.form-select.p-3#id(style="width: 90px" )
+                            option(value="") 
+                            option(value="uzb") uzb
+                            option(value="tjk") tjk
+                            option(value="kzk") kzk
+                    .mb-3.input-group
+                        span(class="input-group-text") 
+                            input.form-control.input-code( style="width: 70px; border: 1px solid transparent; background: transparent" name='phone_code')
+                        
+                        input.form-control.p-3(type='number' name='phone' placeholder='Phone' required)
+                .mb-3
+                    input.form-control.p-3(type='file' name='photo'  placeholder='Product Img' required)
+                .mb-3 
+                    textarea.form-control(name="comment", cols="30", rows="10") 
+                .d-flex.mb-3 
+                    button(type='submit').btn.btn-success.mx-2.w-100.add_pro Qo'shish
